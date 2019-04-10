@@ -1,0 +1,82 @@
+{
+  "name": "teleprompter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/main.js",
+  "scripts": {
+    "dev": "concurrently \"cross-env NODE_ENV=development webpack-dev-server --hot --inline --config webpack.dev.config.js --mode development\" \"cross-env NODE_ENV=development electron ./src/main.js\" \"cross-env NODE_ENV=development nodemon ./src/server.js\"",
+    "prod": "cross-env NODE_ENV=production webpack --display-error-details --progress --color --config webpack.prod.config.js --mode production",
+    "start": "npm run prod  && electron ./src/main.js",
+    "pack": "electron-builder --dir",
+    "dist": "npm run prod && electron-builder",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "author": "",
+  "license": "ISC",
+  "build": {
+    "productName": "Teleprompter",
+    "win": {
+      "target": "NSIS"
+    },
+    "linux": {
+      "target": [
+        "deb",
+        "AppImage"
+      ]
+    },
+    "mac": {
+      "category": "public.app-category.education"
+    },
+    "directories": {
+      "output": "release"
+    }
+  },
+  "devDependencies": {
+    "aws-amplify": "^1.1.7",
+    "aws-amplify-react": "^2.1.1",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-minify-webpack-plugin": "^0.3.1",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "concurrently": "^4.0.1",
+    "cross-env": "^5.2.0",
+    "css-loader": "^1.0.0",
+    "electron": "^3.0.2",
+    "electron-builder": "^20.28.4",
+    "file-loader": "^2.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.4.3",
+    "node-sass": "^4.9.3",
+    "nodemon": "^1.18.5",
+    "react-hot-loader": "^4.3.11",
+    "regenerator-runtime": "^0.12.1",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.0",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.9",
+    "webpack-sources": "1.0.1"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "bulma": "^0.7.1",
+    "chart.js": "^2.7.3",
+    "dotenv": "^6.1.0",
+    "express": "^4.16.4",
+    "localforage": "^1.7.2",
+    "lodash": "^4.17.11",
+    "mysql": "^2.16.0",
+    "react": "^16.5.2",
+    "react-audio-recorder": "^2.1.0",
+    "react-chartjs-2": "^2.7.4",
+    "react-dom": "^16.5.2",
+    "react-router-dom": "^4.3.1",
+    "react-sparklines": "^1.7.0",
+    "watson-speech": "^0.35.1"
+  }
+}
